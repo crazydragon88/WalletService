@@ -20,15 +20,6 @@ struct Five88 {
         let token: String
         let expired: Date
         let username: String
-
-        enum CodingKeys: String, CodingKey {
-            case id
-            case _id
-            case username
-            case expired = "expried"
-            case token
-            case uuid
-        }
     }
 
     struct Wallet: Content, Codable {
