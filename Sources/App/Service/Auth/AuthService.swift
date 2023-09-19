@@ -27,6 +27,16 @@ struct AuthService {
 
         req.logger.info("Auth \(authResponse)")
 
-        return try authResponse.content.decode(Five88.UserToken.self)
+        switch authResponse.status {
+
+        case .ok:
+            return try authResponse.content.decode(Five88.UserToken.self)
+
+        case .unauthorized:
+            throw Abort(.unauthorized)
+
+        default:
+            throw Error.problem
+        }
     }
 }
